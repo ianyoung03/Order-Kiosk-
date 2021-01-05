@@ -115,7 +115,7 @@ class Main {
 				System.out.print("   " + array[i][j]);
 			}
 			System.out.println();
-			if (array[i+1][0] == 0)
+			if (array[i+1][0] == 0) ////THIS LINE IS THE PROBLEM WITH THE OUT OF BOUNDS BUG
 				break;
 		}
 			System.out.println("Your total after taxes is: " + taxCalculator(array));
