@@ -44,7 +44,7 @@ class Main {
 		splitName = name.split(" ");
 	
 		//////////getting user input
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 5; i++) //s
 		{
 			try
 			{
