@@ -6,7 +6,7 @@ class Main {
 		double subtotal = 0;
 		for (int i = 0; i < 5; i++)
 		{
-			subtotal = subtotal + array[i][2]; 
+			subtotal = subtotal + array[i][3]; 
 		}
 		return subtotal * 1.13;
 	}	
@@ -19,11 +19,9 @@ class Main {
 		
 		int itemChoice = 0, quantity = 0;
 
-		String name = "a";
+		String name = " ";
 
-		int[] userChoices = new int[5];
-
-		double[][] array = new double[5][3];
+		double[][] array = new double[5][4];
 		double[] prices = {2.50, 5.00, 3.00, 1.50, 4.00};
 		
 		String[] menuItems = {"Mango", "Chicken", "Fries", "Apple", "Cereal"};
@@ -59,7 +57,7 @@ class Main {
 			}
 			if (itemChoice == 6)
 				break;
-			userChoices[i] = itemChoice - 1;
+			array[i][0] = itemChoice - 1;
 
 			
 			
@@ -72,33 +70,18 @@ class Main {
 			{
 				System.out.println("Error. Please type an integer. ex. 3");
 			}
-			array[i][0] = quantity;
-			array[i][1] = prices[itemChoice - 1];
-			array[i][2] = quantity * prices[itemChoice - 1];
+			array[i][1] = quantity;
+			array[i][2] = prices[itemChoice - 1];
+			array[i][3] = quantity * prices[itemChoice - 1];
 		
 			for (int j = 0; j < i; j++)
 			{
-				if (userChoices[i] == userChoices[j])
+				if (array[i][0] == array[j][0])
 				{
 					System.out.println("You repeated a choice! Choose a different item");
 					i = i - 1;
 				}
-				/*else
-				{
-					try
-					{
-						System.out.println("How many of this item would you like to buy");	
-						quantity = Integer.parseInt(scan.nextLine());
-					}
-					catch (Exception e)
-					{
-						System.out.println("Error. Please type an integer. ex. 3");
-					}
-						array[i][0] = quantity;
-						array[i][1] = prices[itemChoice - 1];
-						array[i][2] = quantity * prices[itemChoice - 1];
-						break;
-				}*/
+				
 			}
 		}
 
@@ -109,10 +92,10 @@ class Main {
 		System.out.println("Quantity Price Subtotal");
 		for (int i = 0; i < 5; i++)
 		{
-			if (array[i][0] == 0) 
+			if (array[i][1] == 0) 
 				break;
-			System.out.print(menuItems[userChoices[i]]);
-			for (int j = 0; j < 3; j++)
+			System.out.print(menuItems[(int)array[i][0]]);
+			for (int j = 1; j < 4; j++)
 			{
 				System.out.print("   " + array[i][j]);
 			}
