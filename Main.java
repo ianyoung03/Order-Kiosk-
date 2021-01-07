@@ -1,22 +1,29 @@
+//importing
 import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
 class Main {
 	
-	//tax method
-   public static double taxCalculator(double[][] order)
+	/////////tax method
+   public static double taxCalculator(double preTaxTotal)
    {
-      double preTaxTotal = 0;
+      return preTaxTotal * 1.13;
+   }	
+
+		//calculating subtotal method
+	 public static double preTaxTotalCalculator(double[][] order)
+	 {
+		  double preTaxTotal = 0;
       for (int i = 0; i < 5; i++)
       {
          preTaxTotal = preTaxTotal + order[i][3]; 
       }
-      return preTaxTotal * 1.13;
-   }	
+      return preTaxTotal;
+	 }
 
 
-	//item input method with exception checks
+	/////////item input method with exception checks method
 	 public static double getItem(double x)
 	 {
 		 Scanner scan = new Scanner (System.in);
@@ -37,7 +44,7 @@ class Main {
 		 }
 		 return x;
 		}
-		// quantity input method with exception checks
+		//////////quantity input method with exception checks
 		public static double getQuantity(double x)
 	 {
 		 Scanner scan = new Scanner (System.in);
@@ -59,7 +66,7 @@ class Main {
 		 return x;
 		}
 
-	//name input method
+	///////////name input method
 		public static String[] getName(String[] splitName)
 	 {
 		 Scanner scan = new Scanner (System.in);
@@ -108,7 +115,7 @@ class Main {
       }
 			myWriter.close();
 	 }
-
+	////////main method
    public static void main(String[] args) throws IOException
    {
    		///////////declaring variables
@@ -143,13 +150,17 @@ class Main {
 
          if (order[i][0] == 6)
             break;
-    
+
+					if (repeatChecker)
+					{
           System.out.println("How many of this item would you like to buy");	
           order[i][1] = getQuantity(order[i][1]);
 
          order[i][2] = prices[(int)order[i][0] - 1];
          order[i][3] = order[i][1] * prices[(int)order[i][0] - 1];
-      
+					}
+
+				else
          for (int j = 0; j < i; j++)
          {
             if (order[i][0] == order[j][0])
@@ -181,13 +192,11 @@ class Main {
          System.out.println();
       }
 
-			//calculate pre tax total
-      for (int i = 0; i < 5; i++)
-      {
-         preTaxTotal = preTaxTotal + order[i][3]; 
-      }
-      System.out.printf("\n%s $%.2f ","Total After Tax:" ,taxCalculator(order));
+			System.out.printf("\n%s $%.2f ","Total Before Tax:",preTaxTotalCalculator(order));
+      System.out.printf("\n%s $%.2f ","Total After Tax:" ,taxCalculator(preTaxTotalCalculator(order)));
 
+
+			//writing to file
 			writeToFile(order);
    	
    }
