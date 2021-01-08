@@ -106,14 +106,11 @@ class Main {
       {
          if (order[i][1] == 0) 
             break;
-         myWriter.write(" "+(int)order[i][0]);
-         for (int j = 1; j < 4; j++)
+         myWriter.write(" "+(int)order[i][0]);  //I am only typecasting here so that it prints as integer to the text file
+         for (int j = 1; j < 4; j++)						//I know it would be better to find a formatting class but that didn't seem worth given
          {
-            if (j == 2 || j == 3)
-               myWriter.write(" "+order[i][j]);
-            else
-               myWriter.write(" "+ (int) order[i][j]);
-         
+            String result = (j == 2 || j == 3) ? " "+order[i][j] : " "+ (int) order[i][j]; 
+						myWriter.write(result);
          }
          myWriter.write("\n");
       }
@@ -126,9 +123,8 @@ class Main {
       for (int j = 0; j < i; j++)
       {
          if (order[i][0] == order[j][0])
-         {
-            return false;
-         }
+          	return false;
+         
       }
       return true;
    }
@@ -196,10 +192,10 @@ class Main {
          System.out.printf("%-14s",menuItems[(int)order[i][0] -1]);
          for (int j = 1; j < 4; j++)
          {
-            if (j == 2 || j == 3)
-               System.out.printf("$%-10.2f  ",order[i][j]);
+            if (j == 1)
+							 System.out.printf("%-10.0f", order[i][j]);
             else
-               System.out.printf("%-10d", (int) order[i][j]);
+               System.out.printf("$%-10.2f  ",order[i][j]);
          
          }
          System.out.println();
